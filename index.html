@@ -69,10 +69,10 @@
         }
 
         function declareWinner(playerScore, compScore) {
-            if (playerScore > compScore){
+            if (playerScore > compScore) {
                 console.log("Congratulations! You win!")
             }
-            else if (playerScore == compScore){
+            else if (playerScore == compScore) {
                 console.log("Overall, it is a tie!")
             }
             else {
@@ -83,7 +83,7 @@
 
         function getValidHand() {
             let playerHand = window.prompt("Please choose what to play (Rock, Paper or Scissors) ").toLowerCase();
-            while (playerHand != "rock" && playerHand != "paper" && playerHand != "scissors"){
+            while (playerHand != "rock" && playerHand != "paper" && playerHand != "scissors") {
                 playerHand = window.prompt("Invalid input. Please pick one of Rock, Paper or Scissors").toLowerCase();
             }
             return playerHand;
@@ -99,8 +99,8 @@
                 let computerHand = computerPlay().toLowerCase();
                 let playerHand = getValidHand();
                 winStatus = checkPlayerWin(playerHand, computerHand);
-                console.log ("You chose " + capitalize(playerHand));
-                console.log ("The computer chose " + capitalize(computerHand));
+                console.log("You chose " + capitalize(playerHand));
+                console.log("The computer chose " + capitalize(computerHand));
                 message = playOneRound(playerHand, computerHand, winStatus);
                 console.log(message);
                 if (winStatus == 0) {
