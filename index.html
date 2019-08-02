@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+    <script>
+        function capitalize(input) {
+            return input.charAt(0).toUpperCase() + input.slice(1)
+        }
+        function computerPlay() {
+            let randn = Math.floor(Math.random() * Math.floor(2));
+            let choice;
+            if (randn == 0) {
+                choice = "Rock";
+            }
+            else if (randn == 1) {
+                choice = "Paper";
+            }
+            else {
+                choice = "Scissor";
+            }
+            return choice;
+        }
+        function checkPlayerWin(playerChoice, compChoice) {
+            if (playerChoice == compChoice) {
+                return 1;
+            }
+            else if (playerChoice == "rock") {
+                if (compChoice == "scissor") {
+                    return 2
+                }
+                else {
+                    return 0;
+                }
+            }
+            else if (playerChoice == "scissors") {
+                if (compChoice == "paper") {
+                    return 2
+                }
+                else {
+                    return 0;
+                }
+            }
+            else {
+                if (compChoice == "rock") {
+                    return 2
+                }
+                else {
+                    return 0;
+                }
+            }
+            return playerWins;
+        }
+        function playOneRound(playerSelection, computerSelection, winStatus) {
+            let message;
+            if (winStatus == 1) {
+                message = "It is a tie";
+            }
+            else if (winStatus == 2) {
+                message = "You Win! " + capitalize(playerSelection) + " beats " + capitalize(computerSelection);
+            }
+            else {
+                message = "You Lose! " + capitalize(computerSelection) + " beats " + capitalize(playerSelection);
+            }
+            return message;
+        }
+
+        function declareWinner(playerScore, compScore) {
+            if (playerScore > compScore){
+                console.log("Congratulations! You win!")
+            }
+            else if (playerScore == compScore){
+                console.log("Overall, it is a tie!")
+            }
+            else {
+                console.log("The computer wins. Better luck next time.")
+            }
+            return;
+        }
+
+        function getValidHand() {
+            let playerHand = window.prompt("Please choose what to play (Rock, Paper or Scissors) ").toLowerCase();
+            while (playerHand != "rock" && playerHand != "paper" && playerHand != "scissors"){
+                playerHand = window.prompt("Invalid input. Please pick one of Rock, Paper or Scissors").toLowerCase();
+            }
+            return playerHand;
+        }
+        function game() {
+            let round = 0;
+            let playerScore = 0;
+            let compScore = 0;
+            let message;
+            let winStatus; //1 for tie, 0 for computer win, 2 for player win
+            while (round < 5) {
+                console.log("Round " + (++round));
+                let computerHand = computerPlay().toLowerCase();
+                let playerHand = getValidHand();
+                winStatus = checkPlayerWin(playerHand, computerHand);
+                console.log ("You chose " + capitalize(playerHand));
+                console.log ("The computer chose " + capitalize(computerHand));
+                message = playOneRound(playerHand, computerHand, winStatus);
+                console.log(message);
+                if (winStatus == 0) {
+                    compScore++;
+                }
+                else if (winStatus == 2) {
+                    playerScore++;
+                }
+                console.log("After round " + round + "\nThe player has " + playerScore + " points. \nThe computer has " + compScore + " points.")
+            }
+            declareWinner();
+        }
+    </script>
+</body>
+
+</html>
